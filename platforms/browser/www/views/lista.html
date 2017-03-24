@@ -1,0 +1,49 @@
+﻿<ion-view>
+  <ion-content class='padding'>
+    <button class="button ion ion-android-download" ng-click="export()"> Exportar</button>
+    <button class="button ion ion-android-upload" ng-click="import()"> Importar</button>
+
+    <ion-list class="padding">
+      <button class="button icon button-full icon ion-plus" ng-click="add()"></button>
+      <ion-item class="item item-input" ng-show="novo">
+        <div class="col">
+          <ion-item class="item item-input">
+            <input type="text" ng-model="actual.cc" placeholder="Ref"/>
+          </ion-item>
+          <ion-item class="item item-input">
+            <input type="text" ng-model="actual.pass" placeholder="Senha"/>
+          </ion-item>
+        </div>
+        <div class="col col-20">
+        <button class="button button-balanced button-block ion ion-checkmark" ng-click="save()"></button>
+        </div>
+      </ion-item>
+
+      <ion-item class="item item-input" ng-repeat="l in (lista | orderBy:'cc') track by $index">
+        <div class="col col-20 colP" ng-show="l.edit">
+          <button class="button button-assertive button-block ion ion-android-remove" ng-click="delete(l)"></button>
+        </div>
+        <div class="col">
+          <ion-item class="item item-input" ng-show="l.edit">
+            <input type="text" ng-model="actual.cc" placeholder="Ref"/>
+          </ion-item>
+          <ion-item class="item item-input" ng-show="l.edit">
+            <input type="text" ng-model="actual.pass" placeholder="Senha"/>
+          </ion-item>
+
+          <div ng-hide="l.edit">
+            <b><span ng-bind="l.cc"></span></b>
+            <br/>
+            <span ng-bind="l.pass"></span>
+          </div>
+        </div>
+        <div class="col col-20 colP" ng-hide="l.edit">
+          <button class="button button-block ion ion-edit" ng-click="edit(l)"></button>
+        </div>
+        <div class="col col-20 colP" ng-show="l.edit">
+          <button class="button button-balanced button-block ion ion-checkmark" ng-click="save(l)"></button>
+        </div>
+      </ion-item>      
+    </ion-list>
+  </ion-content>
+</ion-view>
